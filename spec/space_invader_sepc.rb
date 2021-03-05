@@ -18,5 +18,13 @@ RSpec.describe SpaceRadar::SpaceInvader, 'Test initialisation and mainfunctional
       file = File.open("#{File.dirname(__FILE__)}/sample_files/si1_falsy.txt")
       expect { SpaceRadar::SpaceInvader.new file }.to raise_error(RuntimeError)
     end
+
+    it 'Returns an instance of SpaceInvader upon proper input' do
+      file_path = "#{File.dirname(__FILE__)}/sample_files/si1.txt"
+      file = File.open file_path
+
+      expect(SpaceRadar::SpaceInvader.new(file).is_a?(SpaceRadar::SpaceInvader)).to be_truthy
+      expect(SpaceRadar::SpaceInvader.new(file_path).is_a?(SpaceRadar::SpaceInvader)).to be_truthy
+    end
   end
 end
