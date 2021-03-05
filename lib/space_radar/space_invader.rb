@@ -5,7 +5,7 @@ module SpaceRadar
   class SpaceInvader < Board
     attr_reader :found
 
-    # Expects input to be a txt file or a path to a txt file
+    # Inits found attr as false
     def initialize(input)
       super
       @found = false
