@@ -6,7 +6,7 @@ module SpaceRadar
   # found invaders is a counter
   class Radar < Board
     attr_reader :found_invaders
-    attr_writer :noise_threshold
+    attr_accessor :noise_threshold
 
     # Default noise_threshold is set to 1
     def initialize(input, noise_threshold: 1)
