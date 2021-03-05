@@ -3,7 +3,7 @@
 module SpaceRadar
   # Defines a standard space invader
   class SpaceInvader
-    attr_reader :size, :invader
+    attr_reader :size, :invader, :found
 
     ACCEPTABLE_TYPE = 'text/plain'
 
@@ -17,11 +17,20 @@ module SpaceRadar
       raise 'Invader is not symetrical' unless rows_lengths.count.equal? 1
 
       @size = "#{rows_lengths.first}x#{@invader.count}"
+      @found = false
     end
 
     def show
       @invader.each { |row| puts row }
       self
+    end
+
+    def found!
+      @found = true
+    end
+
+    def hide!
+      @found = false
     end
 
     private
