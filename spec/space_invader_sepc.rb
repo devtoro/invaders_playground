@@ -11,7 +11,12 @@ RSpec.describe SpaceRadar::SpaceInvader, 'Test initialisation and mainfunctional
     end
 
     it 'Raises RuntimeError if string is not a path to a file' do
-      expect { SpaceRadar::SpaceInvader.new('sample').to raise_error(RuntimeError) }
+      expect { SpaceRadar::SpaceInvader.new('sample') }.to raise_error(RuntimeError)
+    end
+
+    it 'Raises Runtime errror if invader not symetrical' do
+      file = File.open("#{File.dirname(__FILE__)}/sample_files/si1_falsy.txt")
+      expect { SpaceRadar::SpaceInvader.new file }.to raise_error(RuntimeError)
     end
   end
 end
