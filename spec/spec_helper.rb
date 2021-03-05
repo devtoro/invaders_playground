@@ -13,5 +13,4 @@ RSpec.configure do |config|
 end
 
 require 'byebug'
-require_relative '../lib/space_radar/board'
-require_relative '../lib/space_radar/space_invader'
+require_relative '../lib/space_radar'

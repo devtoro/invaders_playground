@@ -4,4 +4,5 @@
 module SpaceRadar; end
 
 require_relative 'space_radar/board'
+require_relative 'space_radar/radar'
 require_relative 'space_radar/space_invader'
