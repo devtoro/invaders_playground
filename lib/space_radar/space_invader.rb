@@ -3,7 +3,7 @@
 module SpaceRadar
   # Defines a standard space invader
   class SpaceInvader
-    attr_reader :size, :invader, :found
+    attr_reader :size, :body, :found
 
     ACCEPTABLE_TYPE = 'text/plain'
 
@@ -11,17 +11,17 @@ module SpaceRadar
     def initialize(input)
       raise ArgumentError, 'Input should be a file or a path to a file' unless input.is_a?(File) || input.is_a?(String)
 
-      @invader = parse_input(input)
-      rows_lengths = @invader.map(&:length).uniq
+      @body = parse_input(input)
+      rows_lengths = @body.map(&:length).uniq
 
       raise 'Invader is not symetrical' unless rows_lengths.count.equal? 1
 
-      @size = "#{rows_lengths.first}x#{@invader.count}"
+      @size = "#{rows_lengths.first}x#{@body.count}"
       @found = false
     end
 
     def show
-      @invader.each { |row| puts row }
+      @body.each { |row| puts row }
       self
     end
 
