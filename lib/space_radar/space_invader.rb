@@ -40,7 +40,7 @@ module SpaceRadar
       path = file.path
       mime_type = IO.popen(['file', '--brief', '--mime-type', path], &:read).chomp
 
-      raise ArgumentError, "File should be of type #{ACCEPTABLE_TYPE}" unless mime_type.eq? ACCEPTABLE_TYPE
+      raise ArgumentError, "File should be of type #{ACCEPTABLE_TYPE}" unless mime_type == ACCEPTABLE_TYPE
     end
   end
 end
