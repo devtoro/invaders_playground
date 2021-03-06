@@ -11,6 +11,7 @@ module Kmp
   # 1. we breakdown the context into substrings of length pattern.length
   # 3. We check each character in the generated strings for equality and return
   #    a match if (all - noise_threshold) characted have matched successfully
+  # Noise threshold can be altered on each instance of the object
   class Matcher
     attr_reader :context, :pattern, :starting_index
     attr_accessor :noise_threshold
@@ -56,6 +57,8 @@ module Kmp
     # Get substring of checked context, in order to check for a match
     # If we exceed the length of the context string, we concat form the beginning
     def build_check_pattern(string, index, pattern_length)
+      validate_pattern_builder(string.length, pattern_length)
+
       index = tokenized_index(string, index)
       if index + pattern_length > string.length
         build_edge_pattern(string, index, pattern_length)
@@ -68,6 +71,8 @@ module Kmp
     # For edge cases, when the generated substring shall exceed the limits of the context string,
     # we concat the remaing characted from the beginning of the context string
     def build_edge_pattern(string, index, pattern_length)
+      validate_pattern_builder(string.length, pattern_length)
+
       index = tokenized_index(string, index)
       part1 = string[index..string.length]
       part2 = string[0..(index + pattern_length).modulo(string.length) - 1]
@@ -99,6 +104,10 @@ module Kmp
       end
 
       found ? match : found
+    end
+
+    def validate_pattern_builder(s_length, p_length)
+      raise 'Pattern length cannot be bigger than the length of the string' unless p_length <= s_length
     end
   end
 end
