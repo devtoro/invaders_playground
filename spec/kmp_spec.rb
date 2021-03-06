@@ -29,9 +29,17 @@ RSpec.describe Kmp::Matcher, 'Test initialisation and main methods of Kmp::Match
       expect(kmp.send(:build_check_pattern, string, 12, 3) == 'rss').to be_truthy
     end
 
-    it 'sends build_check_pattern and raises error if :pattern_length > string.length'
-    it 'sends build_edge_pattern and raises error if :pattern_length > string.length'
-    it 'sends check_match and returns false in case of miss'
-    it 'sends check_match and returns matched string if match. Matched string should be the first arguement'
+    it 'Validate check pattern builders and raises error if :pattern_length > string.length' do
+      expect { kmp.send(:build_check_pattern, 'space', 0, 12) }.to raise_error(RuntimeError)
+      expect { kmp.send(:build_edge_pattern, 'space', 0, 12) }.to raise_error(RuntimeError)
+    end
+
+    it 'sends check_match and returns false in case of miss and context substring in case of match' do
+      expect(kmp.send(:check_match, 'space', 'invade')).to be_falsy
+    end
+
+    it 'sends check_match and returns matched string if match. Matched string should be the first arguement' do
+      expect(kmp.send(:check_match, 'spa', 'sps') == 'spa').to be_truthy
+    end
   end
 end
