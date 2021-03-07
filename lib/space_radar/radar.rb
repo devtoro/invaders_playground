@@ -26,10 +26,14 @@ module SpaceRadar
 
     def init_lookout!
       matcher = Kmp::Matcher.new noise_threshold: @noise_threshold
+      raise 'Target not set' if @target.nil?
+      raise 'Target should be an instance of SpaceRadar::SpaceInvader' unless @target.is_a?(SpaceRadar::SpaceInvader)
 
       search_invader matcher, 0
       @found_invaders.push @target if @target.found
     end
+
+    private
 
     def search_invader(matcher, starting_row, match_list = [])
       return false if (@body.length - starting_row) < @target.body.length
@@ -37,18 +41,25 @@ module SpaceRadar
       @target.body.each_with_index do |pattern, i|
         matcher.pattern = pattern
         matcher.context = @body[starting_row + i]
-        matcher.starting_index = match_list.last.nil? ? 0 : match_list.last.matched_index
-
+        matcher.starting_index = next_starting_index(match_list)
         mr = matcher.check!
-        if mr.match
-          match_list << mr
-          @target.found! if match_list.count == @target.body.count
-          return @target.found if @target.found
-        else
-          next_row = starting_row + 1
-          return search_invader(matcher, next_row, match_list)
-        end
+        return search_invader(matcher, (starting_row + 1), match_list) unless mr.match
+
+        match_list << mr
+        @target.found! if match_list.count == @target.body.count
+        return @target.found if @target.found
       end
+    end
+
+    def next_starting_index(match_list = [])
+      raise ArgumentError, 'Argument should be an array of Kmp::Match' unless match_list.is_a?(Array)
+
+      last_match = match_list.last
+      return 0 if last_match.nil?
+
+      raise ArgumentError, 'Argument should only have instances of Kmp::Match' unless last_match.is_a?(Kmp::Match)
+
+      last_match.matched_index
     end
   end
 end
