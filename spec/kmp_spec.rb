@@ -17,6 +17,19 @@ RSpec.describe Kmp::Matcher, 'Test initialisation and main methods of Kmp::Match
     end
   end
 
+  context 'Updating attributes' do
+    it 'raises argument error if invalid argument is passed' do
+      kmp = Kmp::Matcher.new
+      expect { kmp.update_attributes(darth: 'vader') }.to raise_error(ArgumentError)
+    end
+
+    it 'updates attributes for valid keys passed' do
+      kmp = Kmp::Matcher.new
+      kmp.update_attributes context: 'anakin skywalker'
+      expect(kmp.context == 'anakin skywalker').to be_truthy
+    end
+  end
+
   context 'Algorithm response' do
     it 'is a Kmp::Match instance' do
       result = @kmp.check!
