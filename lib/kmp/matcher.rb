@@ -17,6 +17,8 @@ module Kmp
   class Matcher
     attr_accessor :context, :pattern, :noise_threshold, :starting_index
 
+    VALID_ATTRIBUTES = %i[context pattern noise_threshold starting_index].freeze
+
     def initialize(context: '', pattern: '', starting_index: 0, noise_threshold: 0)
       @context = context
       @pattern = pattern
@@ -38,6 +40,15 @@ module Kmp
       end
 
       Match.new match, index
+    end
+
+    def update_attributes(**attributes)
+      attributes.each do |k, v|
+        raise ArgumentError, "Invalid argument #{k}" unless VALID_ATTRIBUTES.include? k.to_sym
+
+        instance_variable_set "@#{k}", v
+      end
+      self
     end
 
     protected
