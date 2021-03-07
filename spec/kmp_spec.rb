@@ -20,7 +20,7 @@ RSpec.describe Kmp::Matcher, 'Test initialisation and main methods of Kmp::Match
   context 'Algorithm response' do
     it 'is a Kmp::Match instance' do
       result = @kmp.check!
-      expect(result.is_a?(Kmp::Match)).to  be_truthy
+      expect(result.is_a?(Kmp::Match)).to be_truthy
       expect(result.respond_to?(:match)).to be_truthy
       expect(result.respond_to?(:matched_index)).to be_truthy
     end
