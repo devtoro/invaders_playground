@@ -3,7 +3,7 @@
 # Implement Knuth-Morris-Pratt (KMP) algorith
 # Include edge cases in matching
 module Kmp
-  # A simple struct to hold result from matching process 
+  # A simple struct to hold result from matching process
   Match = Struct.new(:match, :matched_index)
 
   # KMP Matcher. Holds logic of the KMP algorithm
@@ -15,7 +15,7 @@ module Kmp
   # 3. We check each character in the generated strings for equality and return
   #    a match if (all - noise_threshold) characted have matched successfully
   class Matcher
-    attr_accessor :context, :pattern, :noise_threshold, :starting_index    
+    attr_accessor :context, :pattern, :noise_threshold, :starting_index
 
     def initialize(context: '', pattern: '', starting_index: 0, noise_threshold: 0)
       @context = context
