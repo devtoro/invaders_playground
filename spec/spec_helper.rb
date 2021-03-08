@@ -14,14 +14,3 @@ end
 
 require 'byebug'
 require_relative '../lib/space_radar'
-
-# For IRB
-# require 'space_radar'
-# board = File.open('/Users/manolistsilikidis/Downloads/board_sample.txt')
-# in1 = File.open('/Users/manolistsilikidis/Downloads/si1.txt')
-# in2 = File.open('/Users/manolistsilikidis/Downloads/si2.txt')
-
-# invader1 = SpaceRadar::SpaceInvader.new in1
-# invader2 = SpaceRadar::SpaceInvader.new in2
-# radar = SpaceRadar::Radar.new board, target: invader1
-# radar.init_lookout!
