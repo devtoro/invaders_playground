@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Manolis Tsilikidis']
   s.email       = 'manolistsilikidis@gmail.com'
   s.files       = Dir['lib/**/*.rb'] + Dir['spec/**/*.rb']
-  s.homepage    = 'https://github.com/devtoro'
+  s.homepage    = 'https://github.com/devtoro/invaders_playground.git'
   s.license     = 'MIT'
   s.add_development_dependency 'byebug', ['11.1.13']
   s.add_development_dependency 'rubocop', ['1.11.0']
