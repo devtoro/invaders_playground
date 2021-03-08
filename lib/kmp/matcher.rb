@@ -56,8 +56,6 @@ module Kmp
       self
     end
 
-    protected
-
     # Arguments validation for initialization and not only
     def validate!
       raise ArgumentError, 'Context should be a String' unless @context.is_a? String
