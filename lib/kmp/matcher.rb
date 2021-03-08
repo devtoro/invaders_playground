@@ -42,6 +42,11 @@ module Kmp
       Match.new match, index
     end
 
+    def check_exact_match
+      check_pattern = build_check_pattern(@context, @starting_index, @pattern.length)
+      Match.new check_match(check_pattern, pattern), @starting_index
+    end
+
     def update_attributes(**attributes)
       attributes.each do |k, v|
         raise ArgumentError, "Invalid argument #{k}" unless VALID_ATTRIBUTES.include? k.to_sym
