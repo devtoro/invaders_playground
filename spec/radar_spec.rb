@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe SpaceRadar::Radar, 'Test initialisation and mainfunctionality of Radar class' do
   before(:each) do
     @radar = SpaceRadar::Radar.new("#{File.dirname(__FILE__)}/sample_files/board_sample.txt")

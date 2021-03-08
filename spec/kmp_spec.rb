@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe Kmp::Matcher, 'Test initialisation and main methods of Kmp::Matcher' do
   before(:each) { @kmp = Kmp::Matcher.new(context: 'sample', pattern: 'les', starting_index: 0, noise_threshold: 1) }
 

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe SpaceRadar::SpaceInvader, 'Test initialisation and mainfunctionality of SpaceInvader class' do
   context 'Interaction with invader. Find/Hide' do
     let(:invader) { SpaceRadar::SpaceInvader.new("#{File.dirname(__FILE__)}/sample_files/si1.txt") }

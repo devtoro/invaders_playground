@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe SpaceRadar::Board, 'Test initialisation and mainfunctionality of Board class' do
   context 'Init input validation' do
     it 'Raises Argument error if init argument empty or invalid(not String or not File)' do
