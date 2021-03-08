@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/devtoro'
   s.license     = 'MIT'
   s.add_development_dependency 'byebug', ['11.1.13']
+  s.add_development_dependency 'rubocop', ['1.11.0']
 end
