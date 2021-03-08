@@ -8,6 +8,7 @@ require 'space_radar'
 board = File.open('/Users/manolistsilikidis/Downloads/board_sample.txt')
 in1 = File.open('/sample/file/dir/si1.txt')
 in2 = File.open('/sample/file/dir/si2.txt')
+# Can be found in the board sample
 in3 = File.open('/sample/file/dir/si3.txt')
 
 invader1 = SpaceRadar::SpaceInvader.new in1
