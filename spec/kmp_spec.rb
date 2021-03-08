@@ -41,6 +41,18 @@ RSpec.describe Kmp::Matcher, 'Test initialisation and main methods of Kmp::Match
       expect(result.match == 'les').to be_truthy
       expect(result.matched_index == 4).to be_truthy
     end
+
+    it 'responds to :check_exact_match to encapsulate :check_match private method and returns Kmp::Match' do
+      result = @kmp.check_exact_match
+      expect(result.is_a?(Kmp::Match)).to be_truthy
+      expect(result.respond_to?(:match)).to be_truthy
+      expect(result.match).to be_falsy
+
+      # Switch starting_index to the expected index to find a match
+      @kmp.starting_index = 4
+      result = @kmp.check_exact_match
+      expect(result.match).to be_truthy
+    end
   end
 
   context 'Private methods' do
