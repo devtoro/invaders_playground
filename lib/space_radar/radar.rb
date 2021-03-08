@@ -20,8 +20,6 @@ module SpaceRadar
       raise ArgumentError, 'Space invader should be a ::SpaceInvader' unless space_invader.is_a? SpaceInvader
 
       @target = space_invader
-      init_lookout!
-      @found_invaders.push(@target) if @target.found
     end
 
     def init_lookout!
@@ -42,8 +40,9 @@ module SpaceRadar
         matcher.pattern = pattern
         matcher.context = @body[starting_row + i]
         matcher.starting_index = next_starting_index(match_list)
-        mr = matcher.check!
-        return search_invader(matcher, (starting_row + 1), match_list) unless mr.match
+
+        mr = matcher.starting_index.positive? ? matcher.check_exact_match : matcher.check!
+        return search_invader(matcher, (starting_row + 1), []) unless mr.match
 
         match_list << mr
         @target.found! if match_list.count == @target.body.count
