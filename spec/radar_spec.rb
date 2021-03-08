@@ -31,7 +31,7 @@ RSpec.describe SpaceRadar::Radar, 'Test initialisation and mainfunctionality of 
   end
 
   context 'Search invader' do
-    let(:target) { SpaceRadar::SpaceInvader.new("#{File.dirname(__FILE__)}/sample_files/si1.txt") }
+    let(:target) { SpaceRadar::SpaceInvader.new("#{File.dirname(__FILE__)}/sample_files/si3.txt") }
 
     it 'returns false if starting row would cause overflow' do
       @radar.target = target
@@ -40,6 +40,7 @@ RSpec.describe SpaceRadar::Radar, 'Test initialisation and mainfunctionality of 
 
     it 'returns true if target found' do
       @radar.target = target
+      @matcher.noise_threshold = 1
       expect(@radar.send(:search_invader, @matcher, 0)).to be_truthy
     end
   end
